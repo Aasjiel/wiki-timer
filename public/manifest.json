@@ -1,6 +1,6 @@
 {
-    "name": "Hello Extensions",
-    "description": "Base Level Extension",
+    "name": "wiki-timer",
+    "description": "A deticated timer for Wikipedia speedruns",
     "version": "1.0",
     "manifest_version": 3,
     "permissions": ["scripting","tabs","activeTab"],
