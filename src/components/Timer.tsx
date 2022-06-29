@@ -49,6 +49,16 @@ export default function Timer() {
         }
     }
 
+    function rndmLinks() {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET",  "https://en.wikipedia.org/w/api.php?format=json&action=query&generator=random&grnnamespace=0&grnlimit=2" , false ); // false for synchronous request
+        xmlHttp.send( null );
+        var json = JSON.parse(xmlHttp.responseText);
+        setStartUrl("http://en.wikipedia.org/?curid=" + json.query.pages[Object.keys(json.query.pages)[0]].pageid);
+        setEndUrl("http://en.wikipedia.org/?curid=" + json.query.pages[Object.keys(json.query.pages)[1]].pageid);
+        window.open("http://en.wikipedia.org/?curid=" + json.query.pages[Object.keys(json.query.pages)[0]].pageid, "self")
+    }
+
     return (
         <div className="App">
                 <InputGroup size="sm" className="mb-3">
@@ -74,6 +84,12 @@ export default function Timer() {
                         validateStartLink();
                         }} variant="primary">Start</Button>
                     <Button onClick={pause} variant="primary">Stop</Button>
+                </span>
+
+                <span>
+                    <Button onClick={()=>{rndmLinks();}} variant="primary">
+                        rndm
+                    </Button>
                 </span>
         </div>
     );
